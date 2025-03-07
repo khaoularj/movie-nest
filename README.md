@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# alx-project-nexus: **MovieNest - Movie Recommendation Web App**
 
-## Getting Started
+## Overview
+Welcome to the **Nexus Project**, the final project of the **ALX ProDev Frontend Engineering** program. 
+MovieNest is a movie recommendation web app designed to help users discover trending and recommended movies. Users can browse movies, view detailed information, and save their favorite movies for easy access.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+The main objectives of this project are to:
+- **Dynamic Movie Pages:** Each movie has a dedicated page with detailed information, including plot, cast, and ratings.
+- **Trending and Recommended Movies:** The app fetches trending and recommended movies from a backend API.
+- **Favorites List:** Users can save their favorite movies and view them anytime.
+- **Responsive and Interactive UI:** The app features a modern, responsive UI built with Styled Components, ensuring a smooth user experience on all devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
+  - **Next.js:** For server-side rendering and dynamic routing.
+  - **TypeScript:** To ensure type safety and enhance development experience.
+  - **Styled Components:** For styling the app in a modular, component-based way.
+  - **Backend API Integration:** To fetch trending and recommended movies and allow users to save favorites.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup Instructions
+ ### Prerequisites
+ - Node.js (v16 or above)
+ - npm or yarn (for package management)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ ### Install Dependencies
+ #### Clone the repository:
+ - git clone https://github.com/khaoularj/movie-nest.git
+ - cd movienest
 
-## Learn More
+ #### Install dependencies:
+ - npm run dev
+ or
+ - yarn dev
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+Feel free to fork the project and submit pull requests. Make sure to follow the project’s coding standards and write tests for new features or bug fixes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Happy Coding! 🚀
