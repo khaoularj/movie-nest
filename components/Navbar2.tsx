@@ -35,8 +35,8 @@ export default function Navbar2() {
         <NavbarButton onClick={() => router.push("/movies")}>Movie Recommendation</NavbarButton>
         <NavbarButton onClick={scrollToAbout}>About Us</NavbarButton>
         <NavbarButton onClick={() => router.push("/contact")}>Contact us</NavbarButton>
-        <NavbarButton className="gradient">Sign Up</NavbarButton>
-        <NavbarButton className="gradient">Login</NavbarButton>
+        <NavbarButton onClick={() => router.push("/signup")} className="gradient">Sign Up</NavbarButton>
+        <NavbarButton onClick={() => router.push("/login")} className="gradient">Login</NavbarButton>
       </ButtonContainer>
     </NavbarContainer1>
   );
