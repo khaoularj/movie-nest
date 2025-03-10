@@ -1,4 +1,3 @@
-// Define the type for a movie
 export interface Movie {
     id: number;
     title: string;
