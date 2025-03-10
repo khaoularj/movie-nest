@@ -46,7 +46,7 @@ const ContactForm = () => {
   return (
     <StyledContactForm onSubmit={handleSubmit} className="contact-form">
       
-      <h1 style={{ color: "white", marginBottom: "50px", marginTop: "-90px" }}>Contact Us</h1>
+      <h1 style={{ color: "white", marginBottom: "50px", marginTop: "-90px", fontSize: "3rem", fontWeight: "600" }}>Contact Us</h1>
 
 
       <div>
