@@ -34,13 +34,11 @@ export default function Navbar() {
         <LogoImage src="/assets/nv_logo1.png" alt="logo"/>
       </LogoContainer>
 
-        {/* Button section */}
         <ButtonContainer>
           <NavbarButton onClick={() => router.push("/movies")}>Movie Recommendation</NavbarButton>
           <NavbarButton onClick={scrollToAbout}>About Us</NavbarButton>
           <NavbarButton onClick={() => router.push("/contact")}>Contact us</NavbarButton>
-          <NavbarButton onClick={() => router.push("/signup")} className="gradient">Sign Up</NavbarButton>
-          <NavbarButton onClick={() => router.push("/login")} className="gradient">Login</NavbarButton>
+          <NavbarButton onClick={() => router.push("/auth")} className="gradient">Join Now</NavbarButton>
         </ButtonContainer>
 
     </NavbarContainer>
