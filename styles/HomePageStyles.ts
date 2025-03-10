@@ -35,6 +35,12 @@ export const HeroSection = styled.section<{ $isScrolled: boolean }>`
     position: relative;
     z-index: 2;
   }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    height: 80vh;
+    padding: 0 10px;
+  }
 `;
 export const MotionHeroSection = motion.create(HeroSection);
 
@@ -44,13 +50,24 @@ export const HeroTitle = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: -40px;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    margin-top: -20px;
+  }
 `;
 export const MotionHeroTitle = motion.create(HeroTitle);
+
 
 
 export const LogoImage = styled.img`
   width: 500px;
   height: auto;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 
@@ -58,44 +75,21 @@ export const HeroPar = styled.p`
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.02em;
-
   background: linear-gradient(to right, #fbcfe8, #64748b, #c084fc);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-
   margin-top: -60px;
   margin-bottom: 60px;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-top: -40px;
+    margin-bottom: 40px;
+  }
 `;
 export const MotionHeroPar = motion.create(HeroPar);
-
-
-// Search box styles
-export const SearchBox = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 80px;
-`;
-
-export const SearchInput = styled.input`
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  margin-top: 10px;
-  margin-right: 10px;
-  width: 300px;
-`;
-
-export const GenreSelect = styled.select`
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #f39c12;
-  color: white;
-`;
-
 
 
 export const MovieSection = styled.section`
@@ -104,10 +98,13 @@ export const MovieSection = styled.section`
   align-items: center;
   height: 100vh;
   text-align: center;
-  padding: 0 20px;
-   margin-bottom: 20px;
-`;
+  margin-bottom: 20px;
 
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    padding: 20px 10px;
+  }
+`;
 
 export const BackgroundOverlay = styled.div`
   position: fixed;
@@ -121,8 +118,12 @@ export const BackgroundOverlay = styled.div`
     rgba(255, 255, 255, 0)
   );
   transition: background 0.5s ease;
-`;
 
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    height: 80vh;
+  }
+`;
 
 export const FullScreenBackground = styled.div`
   position: fixed;
@@ -137,42 +138,72 @@ export const FullScreenBackground = styled.div`
 
 export const AppContainer = styled.div`
   overflow-x: hidden;
-  color: #d1d5db; 
+  color: #d1d5db;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   ::selection {
     background: #67e8f9;
-    color: #155e75; 
+    color: #155e75;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
   }
 `;
 
 
-
 export const GetStartedButton = styled.button`
-  padding: 14px 22px; 
-  font-size: 1rem; 
+  padding: 14px 22px;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 8px; 
-  border: 1px solid #d1d5db; 
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
   transition: all 0.3s ease-in-out;
   margin-bottom: 40px;
-  
-  
   background: linear-gradient(to right, #fbcfe8, #64748b, #c084fc);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 
-  
   &:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-color: #9ca3af;
   }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 12px 18px;
+  }
 `;
 
+export const LogOutButton = styled.button`
+  padding: 2px 16px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(to right, #fbcfe8, #64748b, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 
+  &:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-color: #9ca3af;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
 
 
 export const AboutSection = styled.div`
@@ -183,19 +214,25 @@ export const AboutSection = styled.div`
   font-weight: bold;
   background: linear-gradient(180deg, #fbcfe8, #cbd5e1, #c084fc);
   background-clip: text;
-   -webkit-background-clip: text;
-   color: transparent;
-`;
+  -webkit-background-clip: text;
+  color: transparent;
 
-// export const AboutTitle = styled.h2`
-//   font-size: 2rem;
-//   margin-bottom: 15px;
-// `;
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+`;
 
 export const AboutText = styled.p`
   font-size: 1.4rem;
   line-height: 2;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
+
 export const MotionAboutSection = motion.create(AboutSection);
 
 
@@ -208,24 +245,40 @@ export const Footer = styled.footer`
   text-align: center;
   font-size: 1.2rem;
   margin-top: 2rem;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const FooterContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // font-weight: semi-bold;
-  font-size: 1.2rem;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const FooterLinks = styled.div`
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 
 export const FooterLink = styled.a`
-  color: white;
   text-decoration: none;
-  margin: 0.5rem 0;
-  font-weight: semi-bold;
-  transition: color 0.3s ease;
+  color: #ffffff;
 
   &:hover {
-    color: #c084fc;
+    color: #fbcfe8;
   }
 `;
