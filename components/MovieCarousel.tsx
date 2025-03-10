@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import MovieCard from "./MovieCard";
 import{CarouselContainer, MovieTrack, StyledMovieCard, MoviePoster, MovieTitle} from "@/styles/MovieCarouselStyle";
 import {Movie, MovieCarouselProps} from "@/interfaces/index";
 
@@ -22,8 +21,6 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ movies }) => {
         {duplicatedMovies.map((movie, index) => (
           <StyledMovieCard key={`${movie.id}-${index}`}>
             <MoviePoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-            <MovieTitle>{movie.title}</MovieTitle>
-            <MovieCard movie={movie} />
           </StyledMovieCard>
           
 
