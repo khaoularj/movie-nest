@@ -18,3 +18,7 @@ export interface MovieCardProps {
         rating: number;
     };
 }
+
+export interface MovieCarouselProps {
+    movies: Movie[];
+}
