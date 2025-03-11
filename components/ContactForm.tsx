@@ -37,7 +37,7 @@ const ContactForm = () => {
       const data = await response.json();
       setIsSubmitting(false);
       setResponseMessage(data.message || "Thank you for your message!");
-    } catch (error) {
+    } catch {
       setIsSubmitting(false);
       setResponseMessage("Failed to send your message. Please try again later.");
     }

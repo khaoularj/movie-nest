@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import{CarouselContainer, MovieTrack, StyledMovieCard, MoviePoster, MovieTitle} from "@/styles/MovieCarouselStyle";
+import{CarouselContainer, MovieTrack, StyledMovieCard, MoviePoster} from "@/styles/MovieCarouselStyle";
 import {Movie, MovieCarouselProps} from "@/interfaces/index";
 
 

@@ -7,7 +7,7 @@ import { DocumentData } from "firebase/firestore";
 import Navbar3 from "@/components/Navbar3";
 import { BackgroundOverlay, FullScreenBackground, MotionHeroPar } from "@/styles/HomePageStyles";
 import { Back, CardContent, MovieCard, MovieDescription, MovieRating, MovieTitle, Poster } from "@/styles/MoviesPageStyles";
-
+import Image from "next/image";
 
 
 interface Movie {
@@ -62,7 +62,7 @@ const FavoritesPage = () => {
 
       <div style={{ padding: "200px", color: "white" }}>
         <MotionHeroPar whileInView={{ opacity: 1, y: 1 }} initial={{ opacity: 2, y: -100 }} transition={{ duration: 0.9 }}>
-          Hello, {user?.displayName || "User"}! <br /><br /> Here's your chosen movies to watch later
+          Hello, {user?.displayName || "User"}! <br /><br /> Here&apos;s your chosen movies to watch later
         </MotionHeroPar>
 
         {loading ? (
@@ -76,7 +76,14 @@ const FavoritesPage = () => {
                 <MovieCard key={movie.movieId}>
                   <CardContent>
                     <Poster>
-                      <img src={movie.poster} alt={movie.title} width={150} />
+                      
+                    <Image 
+                      src={movie.poster} 
+                      alt={movie.title} 
+                      width={150} 
+                      height={225} 
+                      priority
+                    />{/* <img src={movie.poster} alt={movie.title} width={150} /> */}
                     </Poster>
                     <MovieTitle>{movie.title}</MovieTitle>
                     <MovieRating>⭐ {movie.rating}</MovieRating>

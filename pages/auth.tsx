@@ -32,18 +32,22 @@ const AuthPage = () => {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       if (isSignUp) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCredential.user, { displayName });
-        router.push("/movies"); // to redirect after signup
+        router.push("/movies");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
-        router.push("/movies"); // to redirect after login
+        router.push("/movies");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
   };
 

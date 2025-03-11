@@ -6,8 +6,8 @@ import Navbar from "@/components/Navbar";
 import {MotionHeroSection, MotionHeroTitle, LogoImage, MotionHeroPar, MovieSection, BackgroundOverlay, FullScreenBackground, AppContainer, GetStartedButton, Footer, FooterContent, AboutText , MotionAboutSection} from "@/styles/HomePageStyles";
 import { useRouter } from "next/router";
 import { auth } from "@/lib/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
-
+import { onAuthStateChanged, User } from "firebase/auth";
+import Image from 'next/image';
 
 const container = (delay: number) => ({
   hidden: { x: -100, opacity: 0 },
@@ -21,7 +21,8 @@ const container = (delay: number) => ({
 
 export default function HomePage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  // const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -37,7 +38,7 @@ export default function HomePage() {
     }
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -118,10 +119,17 @@ export default function HomePage() {
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.9 }}
         style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <img src="/assets/nv_logo1.png" alt="MovieNest Logo" style={{ width: "500px", height: "400px", objectFit: "contain" }} />
+          {/* <img src="/assets/nv_logo1.png" alt="MovieNest Logo" style={{ width: "500px", height: "400px", objectFit: "contain" }} /> */}
+          <Image 
+              src="/assets/nv_logo1.png" 
+              alt="MovieNest Logo" 
+              width={500} 
+              height={400} 
+              style={{ objectFit: 'cover' }} 
+            />
         <AboutText>
           <br />
-          Whether you're searching for trending films, personalized recommendations, or a place to save your all-time favorites, MovieNest has you covered. <br />
+          Whether you&apos;re searching for trending films, personalized recommendations, or a place to save your all-time favorites, MovieNest has you covered. <br />
           
           This project is the Nexus Project, the final milestone in the ProDev Frontend ALX Program.<br />
           Built with Next.js for the frontend and powered by CineWhisper API, developed by my peers in the ProDev Backend ALX program.<br />

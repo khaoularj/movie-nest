@@ -8,11 +8,12 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { useRouter } from "next/router";
 import { Input } from "@/styles/ContactFormStyle";
 import { saveFavorite } from "@/lib/firebaseConfig1";
+import Image from "next/image";
 
 
 
 interface Movie {
-  genre_ids: any;
+  genre_ids: number[];
   rating: ReactNode;
   id: number;
   title: string;
@@ -43,10 +44,31 @@ const MoviesPage = () => {
 
 
   
-  const loadMovies = async () => {
+  // const loadMovies = async () => {
+  //   if (loading || !hasMore) return;
+  //   setLoading(true);
+
+  //   try {
+  //     const newMovies = await fetchMovies(page);
+  //     if (newMovies.length === 0) {
+  //       setHasMore(false);
+  //     } else {
+  //       setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+  //       setPage((prevPage) => prevPage + 1);
+  //       setDisplayedMovies((prevMovies) => [...prevMovies, ...newMovies]);
+  //     }
+  //   } catch (error) {
+  //     console.error("there's an error fetching movies:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
+  const loadMovies = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
-
+  
     try {
       const newMovies = await fetchMovies(page);
       if (newMovies.length === 0) {
@@ -61,8 +83,7 @@ const MoviesPage = () => {
     } finally {
       setLoading(false);
     }
-  };
-
+  }, [loading, hasMore, page]);
 
   const handleFavoriteClick = async (movie: Movie) => {
     if (!user) {
@@ -92,7 +113,7 @@ const MoviesPage = () => {
   // loading initial movies
   useEffect(() => {
     if (user) loadMovies();
-  }, [user]);
+  }, [user, loadMovies]);
 
 
   // adding an intersection observer for infinite scroll
@@ -108,7 +129,7 @@ const MoviesPage = () => {
       });
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore]
+    [loading, hasMore, loadMovies]
   );
 
   if (!user) return <p>Loading...</p>;
@@ -139,7 +160,8 @@ const MoviesPage = () => {
             <MovieCard key={movie.id} ref={index === displayedMovies.length - 1 ? lastMovieRef : null}>
               <CardContent>
                 <Poster>
-                  <img src={movie.poster} alt={movie.title} />
+                  {/* <img src={movie.poster} alt={movie.title} /> */}
+                  <Image src={movie.poster} alt={movie.title} width={500} height={750} />
                 </Poster>
                 <MovieTitle>{movie.title}</MovieTitle>
                 <MovieRating>⭐ {movie.rating}</MovieRating>
