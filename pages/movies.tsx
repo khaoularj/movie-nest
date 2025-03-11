@@ -2,15 +2,13 @@ import { ReactNode, useEffect, useState, useRef, useCallback } from "react";
 import { fetchMovies } from "@/services/api";
 import Navbar3 from "@/components/Navbar3";
 import { BackgroundOverlay, FullScreenBackground, Footer, FooterContent, LogOutButton } from "@/styles/HomePageStyles";
-import {MovieCard, PopularMovies, Back, MovieTitle, MovieDescription, CardContent, MovieRating, Poster} from "@/styles/MoviesPageStyles";
+import { MovieCard, PopularMovies, Back, MovieTitle, MovieDescription, CardContent, MovieRating, Poster } from "@/styles/MoviesPageStyles";
 import { auth } from "@/lib/firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useRouter } from "next/router";
 import { Input } from "@/styles/ContactFormStyle";
 import { saveFavorite } from "@/lib/firebaseConfig1";
 import Image from "next/image";
-
-
 
 interface Movie {
   genre_ids: number[];
@@ -43,32 +41,11 @@ const MoviesPage = () => {
   }, [router]);
 
 
-  
-  // const loadMovies = async () => {
-  //   if (loading || !hasMore) return;
-  //   setLoading(true);
-
-  //   try {
-  //     const newMovies = await fetchMovies(page);
-  //     if (newMovies.length === 0) {
-  //       setHasMore(false);
-  //     } else {
-  //       setMovies((prevMovies) => [...prevMovies, ...newMovies]);
-  //       setPage((prevPage) => prevPage + 1);
-  //       setDisplayedMovies((prevMovies) => [...prevMovies, ...newMovies]);
-  //     }
-  //   } catch (error) {
-  //     console.error("there's an error fetching movies:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
-  const loadMovies = useCallback(async () => {
+  // loading movies from the API
+  const loadMovies = async () => {
     if (loading || !hasMore) return;
     setLoading(true);
-  
+
     try {
       const newMovies = await fetchMovies(page);
       if (newMovies.length === 0) {
@@ -79,44 +56,30 @@ const MoviesPage = () => {
         setDisplayedMovies((prevMovies) => [...prevMovies, ...newMovies]);
       }
     } catch (error) {
-      console.error("there's an error fetching movies:", error);
+      console.error("Error fetching movies:", error);
     } finally {
       setLoading(false);
     }
-  }, [loading, hasMore, page]);
-
-  const handleFavoriteClick = async (movie: Movie) => {
-    if (!user) {
-      console.log("User is not logged in");
-      return; 
-    }
-    await saveFavorite(user.uid, movie);
   };
 
+  useEffect(() => {
+    if (user) loadMovies();
+  }, [user]);
 
-  // to search movies by title
+
+  // fearch functionality
   const handleSearch = () => {
     let filteredMovies = [...movies];
-    // filter by title
     if (searchQuery) {
       filteredMovies = filteredMovies.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-
-    // new features will be added in the futur to filter by genre
-
-     setDisplayedMovies(filteredMovies);
+    setDisplayedMovies(filteredMovies);
   };
 
 
-  // loading initial movies
-  useEffect(() => {
-    if (user) loadMovies();
-  }, [user, loadMovies]);
-
-
-  // adding an intersection observer for infinite scroll
+  // adding intersection observer for infinite scroll
   const observer = useRef<IntersectionObserver | null>(null);
   const lastMovieRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -124,7 +87,7 @@ const MoviesPage = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          loadMovies();
+          loadMovies();  // Load the next page of movies
         }
       });
       if (node) observer.current.observe(node);
@@ -134,6 +97,16 @@ const MoviesPage = () => {
 
   if (!user) return <p>Loading...</p>;
 
+
+  // adding save to fav list functionality
+  const handleFavoriteClick = async (movie: Movie) => {
+    if (!user) {
+      console.log("User is not logged in");
+      return; 
+    }
+    await saveFavorite(user.uid, movie);
+  };
+
   return (
     <div>
       <Navbar3 />
@@ -141,16 +114,14 @@ const MoviesPage = () => {
       <FullScreenBackground />
 
       <div style={{ padding: "20px", color: "white" }}>
-        {/* <h1>Hello, {user.displayName || "User"}!</h1> */}
-        
-        <div style={{ marginBottom: "20px",display: "flex", justifyContent: "center", marginTop: "20px" }}>
+        <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center", marginTop: "20px" }}>
           <Input
             type="text"
             placeholder="Search for a movie"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyUp={handleSearch}
-            style={{ padding: "10px", width: "250px",textAlign: "center" }}
+            style={{ padding: "10px", width: "250px", textAlign: "center" }}
           />
         </div>
 
@@ -160,7 +131,6 @@ const MoviesPage = () => {
             <MovieCard key={movie.id} ref={index === displayedMovies.length - 1 ? lastMovieRef : null}>
               <CardContent>
                 <Poster>
-                  {/* <img src={movie.poster} alt={movie.title} /> */}
                   <Image src={movie.poster} alt={movie.title} width={500} height={750} />
                 </Poster>
                 <MovieTitle>{movie.title}</MovieTitle>
@@ -168,15 +138,19 @@ const MoviesPage = () => {
                 <Back>
                   <MovieDescription>{movie.description}</MovieDescription>
                 </Back>
-
               </CardContent>
-              <LogOutButton style={{ 
-                display: "flex", 
-                justifyContent: "center", 
-                alignItems: "center", 
-                marginTop: "30px",
-                margin: "0 auto" 
-              }}  onClick={() => handleFavoriteClick(movie)}>Add to Favorites</LogOutButton>
+              <LogOutButton
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: "30px",
+                  margin: "0 auto"
+                }}
+                onClick={() => handleFavoriteClick(movie)}
+              >
+                Add to Favorites
+              </LogOutButton>
             </MovieCard>
           ))}
         </div>
