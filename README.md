@@ -54,5 +54,8 @@ The main objectives of this project are to:
 The app is deployed on Vercel.
 You can view the live app here: https://getmovienest.vercel.app/
 
+## Video Demo
+https://drive.google.com/file/d/1AOlN5Vg7zp_1AY_vcrb8dr9yCyItHVTJ/view
+
 ## NOTES!
 Currently, there is an issue with the upload speed of the user's favorite list, causing delays in the process. I am actively working on resolving this, and a fix will be deployed soon!
