@@ -1,4 +1,8 @@
 module.exports = {
+    reactStrictMode: true,
+    compiler: {
+        styledComponents: true,
+    },
     images: {
         remotePatterns: [
             {
@@ -9,7 +13,7 @@ module.exports = {
             {
                 protocol: 'https',
                 hostname: 'via.placeholder.com',
-                pathname: '/**', // Allow any path in placeholder.com
+                pathname: '/**',
             },
         ],
     },
