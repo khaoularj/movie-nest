@@ -21,6 +21,7 @@ export const fetchTrendingMovies = async () => {
 };
 
 
+
 // fetching movie list from cinewhisper API
 export const fetchMovies = async (page = 1) => {
     try {
