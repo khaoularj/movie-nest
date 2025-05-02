@@ -24,7 +24,7 @@ export const fetchTrendingMovies = async () => {
 // fetching movie list from cinewhisper API
 export const fetchMovies = async (page = 1) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/movies/`, {
+        const response = await axios.get(`${API_BASE_URL}/trending/movie/week?api_key=${API_KEY}`, {
             params: { format: "json", page },
         });
 
@@ -64,7 +64,7 @@ export const fetchMovies = async (page = 1) => {
 // };
 
 export const fetchMovieDetails = async (id: string): Promise<MovieDetail> => {
-    const response = await axios.get(`${API_BASE_URL}/movie/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/trending/movie/week?api_key=${API_KEY}${id}`);
     const movie = response.data;
 
     // Ensure the data matches the MovieDetail format
